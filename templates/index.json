@@ -1,1 +1,394 @@
-{"sections":{"166434571490852d5c":{"type":"text-with-image-custom","settings":{"className":"image_text","subheading":"ikinita","title":"IKIGAI SS24","image":"shopify:\/\/shop_images\/080_049.png","image_two":"shopify:\/\/shop_images\/080_075.png","content":"","link_text":"Discover now","link_url":"shopify:\/\/collections\/ikigai"}},"slideshow":{"type":"slideshow","blocks":{"slide-0":{"type":"image","settings":{"apply_overlay":true,"content_position":"bottomLeft","subheading":"Slide title","title":"Tell your story","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":""}},"slide-1":{"type":"image","settings":{"apply_overlay":true,"content_position":"bottomLeft","subheading":"Slide title","title":"Tell your story","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":""}}},"block_order":["slide-0","slide-1"],"disabled":true,"settings":{"show_fullscreen":true,"show_arrow":false,"autoplay":true,"cycle_speed":5,"text_color":"#ffffff","button_color":"#363636","button_background":"#ffffff"}},"fc8cbf97-8819-4574-bd18-4fa3bcdd4c10":{"type":"custom-tab-featured-collections","blocks":{"a8f4c0c1-0c1f-4c2c-8499-564788d7a70d":{"type":"collection","settings":{"collection":"ikigai","title":"New in","grid_items_count":10,"button_text":""}},"eeb5c7d2-dcef-4764-a294-65aa973056ea":{"type":"collection","settings":{"collection":"cabinet-de-curiosite","title":"Cabinet de curiosité","grid_items_count":4,"button_text":""}},"template--14432993116224__fc8cbf97-8819-4574-bd18-4fa3bcdd4c10-1681802957e314da77-0":{"type":"collection","settings":{"collection":"ikinita-x-farda","title":"Ikinita x Farda","grid_items_count":6,"button_text":""}}},"block_order":["a8f4c0c1-0c1f-4c2c-8499-564788d7a70d","eeb5c7d2-dcef-4764-a294-65aa973056ea","template--14432993116224__fc8cbf97-8819-4574-bd18-4fa3bcdd4c10-1681802957e314da77-0"],"custom_css":[],"settings":{"class":"feat_collection feat_tab_collection","title":"Featured products","sub_heading":"","layout_mode":"carousel","show_product_info":true,"show_vendor":false,"show_color_swatch":false,"grid_mobile_items_per_row":"1","grid_desktop_items_per_row":3}},"166444874841023a46":{"type":"featured-collections-custom","blocks":{"1664448748e5ae3a3f-0":{"type":"collection","settings":{"collection":"new-collection","title":"","grid_items_count":3,"button_text":""}}},"block_order":["1664448748e5ae3a3f-0"],"disabled":true,"settings":{"class":"feat_collection","title":"","layout_mode":"grid","show_product_info":true,"show_vendor":false,"show_color_swatch":true,"grid_mobile_items_per_row":"1","grid_desktop_items_per_row":3}},"timeline":{"type":"timeline","blocks":{"item-0":{"type":"item","settings":{"apply_overlay":true,"title":"2000","subheading":"Sub-heading","heading":"Heading","content":"<p>Add your own custom content to give more information about your store, availability details...<\/p>"}},"item-1":{"type":"item","settings":{"apply_overlay":true,"title":"2001","subheading":"Sub-heading","heading":"Heading","content":"<p>Add your own custom content to give more information about your store, availability details...<\/p>"}},"item-2":{"type":"item","settings":{"apply_overlay":true,"title":"2002","subheading":"Sub-heading","heading":"Heading","content":"<p>Add your own custom content to give more information about your store, availability details...<\/p>"}}},"block_order":["item-0","item-1","item-2"],"disabled":true,"settings":{"text_color":"#ffffff"}},"16643687256e9115ef":{"type":"shop-the-look-custom","blocks":{"1664368725a78f18dd-0":{"type":"look","settings":{"image":"shopify:\/\/shop_images\/IMG_1571.jpg","dot_style":"light","product_1":"copy-of-3-colour-stone-trim-jumpsuit","product_1_horizontal_position":59,"product_1_vertical_position":12,"product_2":"copy-of-rushi-headpiece-system-gold-22k-gold-wash","product_2_horizontal_position":27,"product_2_vertical_position":29,"product_3":"copy-of-rushi-headpiece-system-gold-22k-gold-wash-1","product_3_horizontal_position":61,"product_3_vertical_position":40}},"9761767a-d5b1-47b9-b74f-93e4d9ff261f":{"type":"look","settings":{"image":"shopify:\/\/shop_images\/IMG_1974.jpg","dot_style":"light","product_1":"copy-of-3-colour-stone-trim-jumpsuit-1","product_1_horizontal_position":48,"product_1_vertical_position":37,"product_2":"copy-of-shirt-hairy-white","product_2_horizontal_position":53,"product_2_vertical_position":66,"product_3":"","product_3_horizontal_position":21,"product_3_vertical_position":84}}},"block_order":["1664368725a78f18dd-0","9761767a-d5b1-47b9-b74f-93e4d9ff261f"],"disabled":true,"settings":{"subheading":"","title":"Shop the look","show_mobile_product_info":false}},"e769383b-1986-4055-a6ee-8d7b19a234e3":{"type":"slideshow","blocks":{"template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-1":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/custom_resized_c9450953-6dd4-477e-91eb-aaa146654506.png","mobile_image":"shopify:\/\/shop_images\/3rd_home_section_ikinita_mobile_png.png","apply_overlay":false,"content_position":"middleCenter","subheading":"","title":"","button_1_text":"Discover","button_1_link":"","button_2_text":"","button_2_link":""}},"template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-2":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/3e_section_home_ikinita.png","mobile_image":"shopify:\/\/shop_images\/IKINITA_HOME_3RD_SECTION_MOBILE.png","apply_overlay":false,"content_position":"middleCenter","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":""}},"bde375d8-ad80-47e2-b473-bb475dc772f5":{"type":"image","disabled":true,"settings":{"apply_overlay":true,"content_position":"bottomLeft","subheading":"Slide title","title":"Tell your story","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":""}}},"block_order":["template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-1","template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-2","bde375d8-ad80-47e2-b473-bb475dc772f5"],"settings":{"show_fullscreen":false,"show_arrow":false,"autoplay":true,"cycle_speed":5,"text_color":"#ffffff","button_color":"#363636","button_background":"#ffffff"}},"1664370228e3af852b":{"type":"text-grid-custom","blocks":{"166437022823bebfe9-0":{"type":"text","settings":{"title":"Join Our Community","content":"<p>Follow our social media for more content and exclusive deals<\/p>","show_social_media":true}},"bb009e2a-931d-43d0-8835-3f784b9b1cca":{"type":"text","settings":{"title":"TROUGH THE EYES OF IKINITA","image":"shopify:\/\/shop_images\/Picture_1.png","content":"<p>Beauty lies in the eyes of the beholder<\/p><p><a href=\"\/pages\/transparency\" title=\"Ikinita the Brand\">IKINITA THE BRAND<\/a><\/p>","show_social_media":false}},"166437022823bebfe9-1":{"type":"newsletter","settings":{"title":"JoIN OUR WORLD","content":"<p>For early access to collection, exclusive pieces and discounts<\/p>"}}},"block_order":["166437022823bebfe9-0","bb009e2a-931d-43d0-8835-3f784b9b1cca","166437022823bebfe9-1"],"settings":{"className":"custom_grid","title":"Our world of wonders","subheading":"Get the last updates, receive exclusive promotions, stay connected with our world."}},"166437247320c3659a":{"type":"text-grid-custom","blocks":{"16643724737b177805-0":{"type":"text","settings":{"title":"Returns","content":"<p>We accept returns made in the original packaging within 14 days of receiving the order. For more info check our <a href=\"\/pages\/faq\" title=\"FAQ\">FAQs<\/a><\/p>","show_social_media":false}},"4a2ec1c3-bccb-4d2b-9290-2e5101892687":{"type":"text","settings":{"title":"Customer Service","content":"<p>info@ikinita.com<br\/>Whatsapp : +33672885800<\/p>","show_social_media":false}},"827a743b-a6eb-457d-9b26-221aacbc05ad":{"type":"text","settings":{"title":"Free Delivery","content":"<p>Free shipping over 500€<\/p>","show_social_media":false}}},"block_order":["16643724737b177805-0","4a2ec1c3-bccb-4d2b-9290-2e5101892687","827a743b-a6eb-457d-9b26-221aacbc05ad"],"custom_css":[],"settings":{"className":"upper_footer","title":"","subheading":""}}},"order":["166434571490852d5c","slideshow","fc8cbf97-8819-4574-bd18-4fa3bcdd4c10","166444874841023a46","timeline","16643687256e9115ef","e769383b-1986-4055-a6ee-8d7b19a234e3","1664370228e3af852b","166437247320c3659a"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "166434571490852d5c": {
+      "type": "text-with-image-custom",
+      "settings": {
+        "className": "image_text",
+        "subheading": "ikinita",
+        "title": "IKIGAI SS24",
+        "image": "shopify://shop_images/080_049.png",
+        "image_two": "shopify://shop_images/080_075.png",
+        "content": "",
+        "link_text": "Discover now",
+        "link_url": "shopify://collections/ikigai"
+      }
+    },
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-0": {
+          "type": "image",
+          "settings": {
+            "apply_overlay": true,
+            "content_position": "bottomLeft",
+            "subheading": "Slide title",
+            "title": "Tell your story",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": ""
+          }
+        },
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "apply_overlay": true,
+            "content_position": "bottomLeft",
+            "subheading": "Slide title",
+            "title": "Tell your story",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide-0",
+        "slide-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_fullscreen": true,
+        "show_arrow": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "text_color": "#ffffff",
+        "button_color": "#363636",
+        "button_background": "#ffffff"
+      }
+    },
+    "fc8cbf97-8819-4574-bd18-4fa3bcdd4c10": {
+      "type": "custom-tab-featured-collections",
+      "blocks": {
+        "a8f4c0c1-0c1f-4c2c-8499-564788d7a70d": {
+          "type": "collection",
+          "settings": {
+            "collection": "ikigai",
+            "title": "New in",
+            "grid_items_count": 10,
+            "button_text": ""
+          }
+        },
+        "eeb5c7d2-dcef-4764-a294-65aa973056ea": {
+          "type": "collection",
+          "settings": {
+            "collection": "cabinet-de-curiosite",
+            "title": "Cabinet de curiosité",
+            "grid_items_count": 4,
+            "button_text": ""
+          }
+        },
+        "template--14432993116224__fc8cbf97-8819-4574-bd18-4fa3bcdd4c10-1681802957e314da77-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "ikinita-x-farda",
+            "title": "Ikinita x Farda",
+            "grid_items_count": 6,
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "a8f4c0c1-0c1f-4c2c-8499-564788d7a70d",
+        "eeb5c7d2-dcef-4764-a294-65aa973056ea",
+        "template--14432993116224__fc8cbf97-8819-4574-bd18-4fa3bcdd4c10-1681802957e314da77-0"
+      ],
+      "custom_css": [],
+      "settings": {
+        "class": "feat_collection feat_tab_collection",
+        "title": "Featured products",
+        "sub_heading": "",
+        "layout_mode": "carousel",
+        "show_product_info": true,
+        "show_vendor": false,
+        "show_color_swatch": false,
+        "grid_mobile_items_per_row": "1",
+        "grid_desktop_items_per_row": 3
+      }
+    },
+    "166444874841023a46": {
+      "type": "featured-collections-custom",
+      "blocks": {
+        "1664448748e5ae3a3f-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-collection",
+            "title": "",
+            "grid_items_count": 3,
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "1664448748e5ae3a3f-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "class": "feat_collection",
+        "title": "",
+        "layout_mode": "grid",
+        "show_product_info": true,
+        "show_vendor": false,
+        "show_color_swatch": true,
+        "grid_mobile_items_per_row": "1",
+        "grid_desktop_items_per_row": 3
+      }
+    },
+    "timeline": {
+      "type": "timeline",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "apply_overlay": true,
+            "title": "2001",
+            "subheading": "Sub-heading",
+            "heading": "Heading",
+            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "apply_overlay": true,
+            "title": "2002",
+            "subheading": "Sub-heading",
+            "heading": "Heading",
+            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+          }
+        },
+        "item-0": {
+          "type": "item",
+          "settings": {
+            "apply_overlay": true,
+            "title": "2000",
+            "subheading": "Sub-heading",
+            "heading": "Heading",
+            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "text_color": "#ffffff"
+      }
+    },
+    "16643687256e9115ef": {
+      "type": "shop-the-look-custom",
+      "blocks": {
+        "9761767a-d5b1-47b9-b74f-93e4d9ff261f": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1974.jpg",
+            "dot_style": "light",
+            "product_1": "copy-of-3-colour-stone-trim-jumpsuit-1",
+            "product_1_horizontal_position": 48,
+            "product_1_vertical_position": 37,
+            "product_2": "copy-of-shirt-hairy-white",
+            "product_2_horizontal_position": 53,
+            "product_2_vertical_position": 66,
+            "product_3": "",
+            "product_3_horizontal_position": 21,
+            "product_3_vertical_position": 84
+          }
+        },
+        "1664368725a78f18dd-0": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1571.jpg",
+            "dot_style": "light",
+            "product_1": "copy-of-3-colour-stone-trim-jumpsuit",
+            "product_1_horizontal_position": 59,
+            "product_1_vertical_position": 12,
+            "product_2": "copy-of-rushi-headpiece-system-gold-22k-gold-wash",
+            "product_2_horizontal_position": 27,
+            "product_2_vertical_position": 29,
+            "product_3": "copy-of-rushi-headpiece-system-gold-22k-gold-wash-1",
+            "product_3_horizontal_position": 61,
+            "product_3_vertical_position": 40
+          }
+        }
+      },
+      "block_order": [
+        "9761767a-d5b1-47b9-b74f-93e4d9ff261f",
+        "1664368725a78f18dd-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "title": "Shop the look",
+        "show_mobile_product_info": false
+      }
+    },
+    "e769383b-1986-4055-a6ee-8d7b19a234e3": {
+      "type": "slideshow",
+      "blocks": {
+        "template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/custom_resized_c9450953-6dd4-477e-91eb-aaa146654506.png",
+            "mobile_image": "shopify://shop_images/3rd_home_section_ikinita_mobile_png.png",
+            "apply_overlay": false,
+            "content_position": "middleCenter",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "Discover",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": ""
+          }
+        },
+        "template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/3e_section_home_ikinita.png",
+            "mobile_image": "shopify://shop_images/IKINITA_HOME_3RD_SECTION_MOBILE.png",
+            "apply_overlay": false,
+            "content_position": "middleCenter",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": ""
+          }
+        },
+        "bde375d8-ad80-47e2-b473-bb475dc772f5": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "apply_overlay": true,
+            "content_position": "bottomLeft",
+            "subheading": "Slide title",
+            "title": "Tell your story",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-1",
+        "template--14432993116224__e769383b-1986-4055-a6ee-8d7b19a234e3-image-2",
+        "bde375d8-ad80-47e2-b473-bb475dc772f5"
+      ],
+      "settings": {
+        "show_fullscreen": false,
+        "show_arrow": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "text_color": "#ffffff",
+        "button_color": "#363636",
+        "button_background": "#ffffff"
+      }
+    },
+    "1664370228e3af852b": {
+      "type": "text-grid-custom",
+      "blocks": {
+        "166437022823bebfe9-0": {
+          "type": "text",
+          "settings": {
+            "title": "Join Our Community",
+            "content": "<p>Follow our social media for more content and exclusive deals</p>",
+            "show_social_media": true
+          }
+        },
+        "bb009e2a-931d-43d0-8835-3f784b9b1cca": {
+          "type": "text",
+          "settings": {
+            "title": "TROUGH THE EYES OF IKINITA",
+            "image": "shopify://shop_images/Picture_1.png",
+            "content": "<p>Beauty lies in the eyes of the beholder</p><p><a href=\"/pages/transparency\" title=\"Ikinita the Brand\">IKINITA THE BRAND</a></p>",
+            "show_social_media": false
+          }
+        },
+        "166437022823bebfe9-1": {
+          "type": "newsletter",
+          "settings": {
+            "title": "JoIN OUR WORLD",
+            "content": "<p>For early access to collection, exclusive pieces and discounts</p>"
+          }
+        }
+      },
+      "block_order": [
+        "166437022823bebfe9-0",
+        "bb009e2a-931d-43d0-8835-3f784b9b1cca",
+        "166437022823bebfe9-1"
+      ],
+      "settings": {
+        "className": "custom_grid",
+        "title": "Our world of wonders",
+        "subheading": "Get the last updates, receive exclusive promotions, stay connected with our world."
+      }
+    },
+    "166437247320c3659a": {
+      "type": "text-grid-custom",
+      "blocks": {
+        "16643724737b177805-0": {
+          "type": "text",
+          "settings": {
+            "title": "Returns",
+            "content": "<p>We accept returns made in the original packaging within 14 days of receiving the order. For more info check our <a href=\"/pages/faq\" title=\"FAQ\">FAQs</a></p>",
+            "show_social_media": false
+          }
+        },
+        "4a2ec1c3-bccb-4d2b-9290-2e5101892687": {
+          "type": "text",
+          "settings": {
+            "title": "Customer Service",
+            "content": "<p>info@ikinita.com<br/>Whatsapp : +33672885800</p>",
+            "show_social_media": false
+          }
+        },
+        "827a743b-a6eb-457d-9b26-221aacbc05ad": {
+          "type": "text",
+          "settings": {
+            "title": "Free Delivery",
+            "content": "<p>Free shipping over 500€</p>",
+            "show_social_media": false
+          }
+        }
+      },
+      "block_order": [
+        "16643724737b177805-0",
+        "4a2ec1c3-bccb-4d2b-9290-2e5101892687",
+        "827a743b-a6eb-457d-9b26-221aacbc05ad"
+      ],
+      "custom_css": [],
+      "settings": {
+        "className": "upper_footer",
+        "title": "",
+        "subheading": ""
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "fc8cbf97-8819-4574-bd18-4fa3bcdd4c10",
+    "166434571490852d5c",
+    "166444874841023a46",
+    "timeline",
+    "16643687256e9115ef",
+    "e769383b-1986-4055-a6ee-8d7b19a234e3",
+    "1664370228e3af852b",
+    "166437247320c3659a"
+  ]
+}
