@@ -1,0 +1,160 @@
+{%- capture section_settings -%}
+{
+  "type": {{ settings.cart_type | json }},
+  "itemCount": {{ cart.item_count }},
+  "drawer": true,
+  "hasShippingEstimator": false
+}
+{%- endcapture -%}
+
+<div id="sidebar-cart" class="Drawer Drawer--fromRight" aria-hidden="true" data-section-id="cart" data-section-type="cart" data-section-settings='{{ section_settings }}'>
+  <div class="Drawer__Header Drawer__Header--bordered Drawer__Container">
+        <span class="Drawer__Title Heading u-h4">
+        <p class="cart-general-title">
+          {{ 'cart.general.title' | t }}
+          <span class="Cart__Empty Heading u-h5">{%- if cart.item_count == 0 -%}Your bag is currently empty{% endif %}</span>
+        </p>
+        <span class="drawer_cart_icon">
+          <span class="cart-item-count">(<span class="Header__CartCount">{{ cart.item_count }}</span>)</span>
+          {%- render 'icon' with 'cart' -%}
+        </span>
+      </span>
+
+      <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="sidebar-cart" aria-label="{{ 'header.navigation.close_cart' | t }}">
+        {%- render 'icon' with 'close' -%}
+      </button>
+  </div>
+
+
+  <form class="Cart Drawer__Content" action="{{ routes.cart_url }}" method="POST" novalidate>
+    <div class="Drawer__Main" data-scrollable>
+      {%- if settings.cart_show_free_shipping_threshold -%}
+        {%- assign threshold_in_cents = settings.cart_free_shipping_threshold | times: 100 -%}
+
+        <div class="Cart__ShippingNotice Text--subdued">
+          <div class="Drawer__Container">
+            {%- if cart.total_price >= threshold_in_cents -%}
+              <p>{{- 'cart.general.free_shipping' | t -}}</p>
+            {%- else -%}
+              {%- capture remaining_amount -%}<span>{{ cart.total_price | minus: threshold_in_cents | abs | money }}</span>{%- endcapture -%}
+              <p>{{- 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount -}}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if cart.item_count == 0 -%}
+        <p class="Cart__Empty Heading u-h5">
+          <a href="/collections/all">SHOP</a>
+        </p>
+        <p class="Cart__Empty Heading u-h5 Cart_list-item" style="margin-top: 30px;">
+          <a href="/collections/cabinet-de-curiosite" class="Text--subdued Link Link--primary">CABINET DE CURIOSITE</a>
+        </p>
+        <p class="Cart__Empty Heading u-h5 Cart_list-item" style="margin-top: 60px;">
+          <a href="/collections/ikinita-x-farda" class="Text--subdued Link Link--primary">IKINITA X FARDA</a>
+        </p>
+        <p class="Cart__Empty Heading u-h5 Cart_list-item" style="margin-top: 90px;">
+          <a href="/collections/shop-all-winter-23-24" class="Text--subdued Link Link--primary">Shop all</a>
+        </p>
+      {%- else -%}
+        <div class="Drawer__Container">
+          <input type="hidden" name="attributes[collection_mobile_items_per_row]" value="">
+          <input type="hidden" name="attributes[collection_desktop_items_per_row]" value="">
+
+          {% render 'cart-items' %}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count == 0 -%}
+        <p class="Cart__Empty Heading u-h5">
+          <a href="/collections/new-in">New In</a>
+        </p>
+       <div class="Drawer_new_in_products">
+         {% assign all_products_collection = collections['new-in'] %}
+         {%- for product in all_products_collection.products limit: 2 -%}
+           {%- render 'product-item-featured-custom', product: product, show_product_info: true, show_vendor: section.settings.show_vendor, show_color_swatch: section.settings.show_color_swatch, show_labels: true -%}   
+         {% endfor %}
+       </div>
+    {% endif %}
+    
+    {%- unless cart.item_count == 0 -%}
+      <div class="Drawer__Footer" data-drawer-animated-bottom>
+        {%- capture shipping_and_taxes_notice -%}{{ 'cart.general.shipping_and_taxes_notice' | t }}{%- endcapture -%}
+
+        {%- if settings.cart_enable_notes or shipping_and_taxes_notice != blank -%}
+          {% comment %}{%- if settings.cart_enable_notes -%}
+            {%- if cart.note == blank -%}
+              <button type="button" class="Cart__NoteButton" data-action="toggle-cart-note">{{ 'cart.general.add_note' | t }}</button>
+            {%- else -%}
+              <button type="button" class="Cart__NoteButton" data-action="toggle-cart-note">{{ 'cart.general.edit_note' | t }}</button>
+            {%- endif -%}
+          {%- endif -%}{% endcomment %}
+
+         {%- if settings.cart_enable_notes -%}
+         <div class="Cart__OffscreenNoteContainer_new"> 
+           <details>
+              <summary>
+                <div class="cart_note_head">  
+                    <span class="Cart__NoteButton">{{ 'cart.general.add_note' | t }}</span>
+                    {% comment %}<span class="cn_close-btn">{%- render 'icon' with 'close' -%}</span>{% endcomment %}
+                </div>
+                <span class="cn_plus-btn">{%- render 'icon' with 'plus' -%}</span>
+                <span class="cn_minus-btn">{%- render 'icon' with 'minus' -%}</span>
+              </summary>
+              <div>
+                <div class="Form__Item">
+                  <textarea class="Cart__Note Form__Textarea" name="note" id="cart-note" rows="3" placeholder="{{ 'cart.general.note_placeholder' | t }}" data-scrollable>{{ cart.note }}</textarea>
+                </div>  
+              </div>
+          </details>
+          </div>
+        {%- endif -%}
+        
+          <div class="total_price">
+            <span class="subtotal">Subtotal</span>
+            <span class="subtotal_price">{{ cart.total_price | money_with_currency }}</span>            
+          </div>
+        
+          {%- if shipping_and_taxes_notice != blank -%}
+            <p class="Cart__Taxes Text--subdued">{{ shipping_and_taxes_notice }}</p>
+          {%- endif -%}
+
+          {%- if cart.cart_level_discount_applications != blank -%}
+            {%- for discount_application in cart.cart_level_discount_applications -%}
+              <p class="Cart__Discount">{%- render 'icon' with 'sale' -%} {{ 'cart.general.discount' | t }} ({{ discount_application.title }}): -<span>{{ discount_application.total_allocated_amount | money }}</span></p>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="cart_btn_main">
+          <a href="/cart" class="cart_btn">View Bag</a>
+        </div>
+
+        <button type="submit" name="checkout" class="Cart__Checkout Button Button--primary Button--full">
+          <span>{{- 'cart.general.checkout' | t -}}</span>
+          <!-- <span class="Button__SeparatorDot"></span> -->
+        </button>
+
+        {%- if settings.cart_enable_notes -%}
+          <div class="Cart__OffscreenNoteContainer" aria-hidden="true">
+          <div class="cart_note_head">  
+          {%- if cart.note == blank -%}
+              <span class="Cart__NoteButton">{{ 'cart.general.add_note' | t }}</span>
+            {%- else -%}
+              <span class="Cart__NoteButton">{{ 'cart.general.edit_note' | t }}</span>
+            {%- endif -%}
+              {% comment %}<span class="cn_close-btn">{%- render 'icon' with 'close' -%}</span>{% endcomment %}
+          </div>
+
+            <div class="Form__Item">
+              <textarea class="Cart__Note Form__Textarea" name="note" id="cart-note" rows="3" placeholder="{{ 'cart.general.note_placeholder' | t }}" data-scrollable>{{ cart.note }}</textarea>
+            </div>
+
+            <button type="button" class="Button Button--primary Button--full" data-action="toggle-cart-note">{{ 'cart.general.save_note' | t }}</button>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+  </form>
+</div>

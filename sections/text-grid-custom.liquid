@@ -1,0 +1,172 @@
+<div id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="footer" class="Footer1 {% if section.blocks.size <= 2 %}Footer--center{% endif %} {{ section.settings.className }}" role="contentinfo">
+  <div class="Container">  
+  {%- if section.settings.subheading != blank or section.settings.title != blank -%}
+    <header class="SectionHeader SectionHeader--center">
+      <div class="Container">
+        {%- if section.settings.title != blank -%}
+          <h1 class="SectionHeader__Heading Heading u-h1">{{ section.settings.title | escape }}</h1>
+        {%- endif -%}
+       {%- if section.settings.subheading != blank -%}
+          <p class="SectionHeader__SubHeading u-h4">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
+    </header>
+  {%- endif -%}
+  
+    {%- if section.blocks.size > 0 -%}
+      <div class="Footer__Inner">
+        {%- for block in section.blocks -%}
+          <div class="Footer__Block Footer__Block--{{ block.type }}" {{ block.shopify_attributes }}>
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                {%- if block.settings.title != blank -%}
+                  <h2 class="Footer__Title Heading u-h1">{{ block.settings.title | escape }}</h2>
+                {%- endif -%}
+              
+                {%- if block.settings.image != blank -%}
+                  <div class="div-margin">
+                    <img src="{{ block.settings.image | image_url }}" />
+                  </div> 
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="Footer__Content Rte">
+                    {{ block.settings.content }}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.show_social_media -%}
+                  {% render 'social-media', class: 'Footer__Social', spacing: 'loose' %}
+                {%- endif -%}
+
+              {%- when 'newsletter' -%}
+                {%- if block.settings.title != blank -%}
+                  <h2 class="Footer__Title Heading u-h1">{{ block.settings.title | escape }}</h2>
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="Footer__Content Rte">
+                    {{ block.settings.content }}
+                  </div>
+                {%- endif -%}
+
+                {%- form 'customer', id: 'footer-newsletter', class: 'Footer__Newsletter Form' -%}
+                  {%- if form.posted_successfully? -%}
+                    <p class="Form__Alert Alert Alert--success">{{ 'footer.newsletter.success' | t }}</p>
+                  {%- else -%}
+                    {%- if form.errors -%}
+                      <p class="Form__Alert Alert Alert--error">{{ form.errors.messages['email'] }}</p>
+                    {%- endif -%}
+
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <input id="first-name" name="contact[first_name]" class="Form__Input" placeholder="Name" type="text"  />
+                    <input type="email" name="contact[email]" class="Form__Input" aria-label="{{ 'footer.newsletter.input' | t }}" placeholder="{{ 'footer.newsletter.input' | t }}" required>
+                    <input type="tel" name="contact[note][phone]" class="Form__Input" placeholder="Phone number" pattern="[0-9]{10,14}">                    
+                    <input type="text" name="contact[custom]" class="Form__Input" placeholder="Enter code (Optional)">
+             
+                    <button type="submit" class="Form__Submit Button Button--primary">{{ 'footer.newsletter.submit' | t }}</button>
+                  {%- endif -%}
+                {%- endform -%}
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}   
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Grid text custom",
+  "class": "shopify-section--div",
+  "max_blocks": 3,
+  "settings": [
+     {
+      "type": "text",
+      "id": "className",
+      "label": "Add Class"      
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"      
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Content"     
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text / social media",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "About the shop"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"          
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social_media",
+          "label": "Show social media",
+          "info": "Make sure to have properly configured your social media in the theme settings.",
+          "default": false
+        }
+      ]
+    }, 
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Text",
+          "default": "<p>A short sentence describing what someone will receive by subscribing</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {      
+      "name": "Grid text custom",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {}
+        },    
+        {
+          "type": "newsletter",
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

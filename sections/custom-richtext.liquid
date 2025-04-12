@@ -1,0 +1,118 @@
+<section class="Section Section--spacingNormal {{ section.settings.class }}" id="section-{{ section.id }}">
+  <div class="Container">
+    {%- if section.settings.subheading != blank or section.settings.title != blank -%}
+      <header class="SectionHeader--center head">
+        {%- if section.settings.title != blank -%}
+          <h2 class="SectionHeader__Heading Heading u-h1">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+      </header>
+    <div class="subhead">
+     {%- if section.settings.subheading != blank -%}
+          <h3 class="SectionHeader__SubHeading u-h6">{{ section.settings.subheading | escape }}</h3>
+     {%- endif -%} 
+      {%- if section.settings.html != blank -%}
+      <div class="Rte">
+        {{ section.settings.html }}
+      </div> 
+      {%- endif -%}
+    </div>    
+    {%- endif -%}
+  </div>
+</section>
+
+
+
+
+<style>
+  {% if section.settings.bgimage %}
+    .{{section.settings.class | replace: " ", "."}} {
+      background: url( {{ section.settings.bgimage.src | image_url }} );
+      background-size: cover;
+      background-repeat: no-repeat;
+      aspect-ratio: {{ section.settings.bgimage.aspect_ratio }};
+    }
+  {% else %}  
+    .{{section.settings.class}} {
+      background: {{ section.settings.bgcolor }};
+    }
+  {% endif %}
+  {% if section.settings.bgimage_mobile %}
+  @media screen and (max-width: 768px){
+    .{{section.settings.class | replace: " ", "."}} {
+      background: url( {{ section.settings.bgimage_mobile.src | image_url }} );
+      background-size: cover;
+      background-repeat: no-repeat;
+      aspect-ratio: {{ section.settings.bgimage_mobile.aspect_ratio }};
+    }
+   {% elsif section.settings.bgimage %}
+    .{{section.settings.class | replace: " ", "."}} {
+      background: url( {{ section.settings.bgimage.src | image_url }} );
+      background-size: cover;
+      background-repeat: no-repeat;
+      aspect-ratio: {{ section.settings.bgimage.aspect_ratio }};
+    }
+  {% else %}  
+    .{{section.settings.class}} {
+      background: {{ section.settings.bgcolor }};
+    }
+  }
+  {% endif %}
+</style>
+
+{% schema %}
+{
+  "name": "Custom richtext",
+  "class": "shopify-section--bordered1",
+  "settings": [    
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Custom class"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Your HTML"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-heading",
+      "default": "Sub-heading"
+    },    
+    {
+      "type": "html",
+      "id": "html",
+      "label": "HTML content",
+      "default": "<p>Write your own custom HTML content.</p>"
+    },    
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Select background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "bgimage",
+      "label": "Select background image",
+      "info": "If image is not seletcted then Background color is automatically set"
+    },
+    {
+      "type": "image_picker",
+      "id": "bgimage_mobile",
+      "label": "Select background image for mobile",
+      "info": "If image is not seletcted then Background color is automatically set"
+    }
+    
+  ],
+  "presets": [
+    {
+        "category": "Advanced",
+      "name": "Custom richtext",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

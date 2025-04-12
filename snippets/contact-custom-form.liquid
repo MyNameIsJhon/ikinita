@@ -1,0 +1,61 @@
+<div class="custom_form">
+  {%- form 'contact', class: 'Form Form--spacingTight' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="Alert Alert--success">{{ 'contact.form.successfully_sent' | t }}</p>
+    {%- endif -%}
+
+    {%- if form.errors -%}
+      <div class="Form__Alert Alert Alert--error">
+        <ul class="Alert__ErrorList">
+          {%- for field in form.errors -%}
+            {%- if field == 'form' -%}
+              <li class="Alert__ErrorItem">{{ form.errors.messages[field] }}</li>
+            {%- else -%}
+              <li class="Alert__ErrorItem"><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  
+  <div class="Form__Group">
+    <div class="Form__Item first-name">
+      <input type="text" class="Form__Input" name="contact[first_name]" aria-label="Your name" placeholder="First name" required="">            
+      <label class="Form__FloatingLabel">First name</label>
+    </div>
+    <div class="Form__Item last-name">
+      <input type="text" class="Form__Input" name="contact[last_name]" aria-label="Your last name" placeholder="Last name">
+      <label class="Form__FloatingLabel">Last name</label>
+    </div>
+  </div>
+  <div class="Form__Item email">
+    <input type="text" class="Form__Input" name="contact[email]" aria-label="Email" placeholder="Email" required>
+    <label class="Form__FloatingLabel">Email</label>
+  </div>
+  <div class="Form__Item phone">
+    <input type="text" class="Form__Input" name="contact[phone]" aria-label="phone" placeholder="Phone">
+    <label class="Form__FloatingLabel">Phone</label>
+  </div>  
+ 
+  <div class="Form__Item">
+    <label>Subject</label>
+    <div class="Form__Select Select Select--primary">
+      {%- render 'icon' with 'select-arrow' -%}
+      <select name="contact[general]" title="General enquiries">
+        <option value="" disabled selected>Select options</option>
+        <option value="general-enquiries">Press</option>
+        <option value="general-enquiries2">Influencing</option>
+        <option value="general-enquiries3">Retail stores</option>
+        <option value="general-enquiries4">Other</option>        
+      </select>
+    </div>
+  </div>
+  
+  <div class="Form__Item message">
+    <textarea name="contact[body]" cols="30" rows="10" class="Form__Textarea" aria-label="{{ 'contact.form.message' | t }}" placeholder="Enter text here" required></textarea>
+    <label class="Form__FloatingLabel">{{ 'contact.form.message' | t }}</label>
+  </div>
+  <button type="submit" class="Form__Submit Button Button--primary Button--full">Submit</button>
+  
+  {% endform %}
+</div>
