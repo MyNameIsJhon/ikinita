@@ -9,6 +9,19 @@
  */
 {
   "sections": {
+    "166434571490852d5c": {
+      "type": "text-with-image-custom",
+      "settings": {
+        "className": "image_text",
+        "subheading": "ikinita",
+        "title": "IKIGAI SS24",
+        "image": "shopify://shop_images/Anonymous-FBI.png",
+        "image_two": "shopify://shop_images/DALL_E_2024-04-13_08.19.50_-_Create_a_sophisticated_and_visually_striking_background_image_suitable_for_an_iTerm_terminal_with_a_dark_theme._The_image_features_an_abstract_represe.webp",
+        "content": "",
+        "link_text": "Discover now",
+        "link_url": "shopify://collections/ikigai"
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
@@ -101,19 +114,6 @@
         "show_color_swatch": false,
         "grid_mobile_items_per_row": "1",
         "grid_desktop_items_per_row": 3
-      }
-    },
-    "166434571490852d5c": {
-      "type": "text-with-image-custom",
-      "settings": {
-        "className": "image_text",
-        "subheading": "ikinita",
-        "title": "IKIGAI SS24",
-        "image": "shopify://shop_images/Anonymous-FBI.png",
-        "image_two": "shopify://shop_images/DALL_E_2024-04-13_08.19.50_-_Create_a_sophisticated_and_visually_striking_background_image_suitable_for_an_iTerm_terminal_with_a_dark_theme._The_image_features_an_abstract_represe.webp",
-        "content": "",
-        "link_text": "Discover now",
-        "link_url": "shopify://collections/ikigai"
       }
     },
     "166444874841023a46": {
@@ -374,9 +374,9 @@
     }
   },
   "order": [
+    "166434571490852d5c",
     "slideshow",
     "fc8cbf97-8819-4574-bd18-4fa3bcdd4c10",
-    "166434571490852d5c",
     "166444874841023a46",
     "timeline",
     "16643687256e9115ef",
