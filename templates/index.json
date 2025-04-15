@@ -9,19 +9,6 @@
  */
 {
   "sections": {
-    "166434571490852d5c": {
-      "type": "text-with-image-custom",
-      "settings": {
-        "className": "image_text",
-        "subheading": "ikinita",
-        "title": "IKIGAI SS24",
-        "image": "shopify://shop_images/080_049.png",
-        "image_two": "shopify://shop_images/080_075.png",
-        "content": "",
-        "link_text": "Discover now",
-        "link_url": "shopify://collections/ikigai"
-      }
-    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
@@ -116,6 +103,19 @@
         "grid_desktop_items_per_row": 3
       }
     },
+    "166434571490852d5c": {
+      "type": "text-with-image-custom",
+      "settings": {
+        "className": "image_text",
+        "subheading": "ikinita",
+        "title": "IKIGAI SS24",
+        "image": "shopify://shop_images/Anonymous-FBI.png",
+        "image_two": "shopify://shop_images/DALL_E_2024-04-13_08.19.50_-_Create_a_sophisticated_and_visually_striking_background_image_suitable_for_an_iTerm_terminal_with_a_dark_theme._The_image_features_an_abstract_represe.webp",
+        "content": "",
+        "link_text": "Discover now",
+        "link_url": "shopify://collections/ikigai"
+      }
+    },
     "166444874841023a46": {
       "type": "featured-collections-custom",
       "blocks": {
@@ -194,7 +194,6 @@
         "9761767a-d5b1-47b9-b74f-93e4d9ff261f": {
           "type": "look",
           "settings": {
-            "image": "shopify://shop_images/IMG_1974.jpg",
             "dot_style": "light",
             "product_1": "copy-of-3-colour-stone-trim-jumpsuit-1",
             "product_1_horizontal_position": 48,
@@ -210,7 +209,6 @@
         "1664368725a78f18dd-0": {
           "type": "look",
           "settings": {
-            "image": "shopify://shop_images/IMG_1571.jpg",
             "dot_style": "light",
             "product_1": "copy-of-3-colour-stone-trim-jumpsuit",
             "product_1_horizontal_position": 59,
@@ -242,8 +240,6 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/custom_resized_c9450953-6dd4-477e-91eb-aaa146654506.png",
-            "mobile_image": "shopify://shop_images/3rd_home_section_ikinita_mobile_png.png",
             "apply_overlay": false,
             "content_position": "middleCenter",
             "subheading": "",
@@ -258,8 +254,6 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/3e_section_home_ikinita.png",
-            "mobile_image": "shopify://shop_images/IKINITA_HOME_3RD_SECTION_MOBILE.png",
             "apply_overlay": false,
             "content_position": "middleCenter",
             "subheading": "",
@@ -315,7 +309,6 @@
           "type": "text",
           "settings": {
             "title": "TROUGH THE EYES OF IKINITA",
-            "image": "shopify://shop_images/Picture_1.png",
             "content": "<p>Beauty lies in the eyes of the beholder</p><p><a href=\"/pages/transparency\" title=\"Ikinita the Brand\">IKINITA THE BRAND</a></p>",
             "show_social_media": false
           }
