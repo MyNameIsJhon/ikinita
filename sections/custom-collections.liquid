@@ -1,0 +1,94 @@
+<section class="custom-collection-section">
+	<div>
+		{% if section.settings.collection_one != blank %}
+			<a href="{{ section.settings.collection_one.url }}" class="collection">
+				<img class="collection-img" src="{{ section.settings.collection_one.featured_image | image_url: width: 500 }}"/>
+				<h3>{{ section.settings.collection_one.title }}</h3>
+			</a>
+		{% endif %}
+
+		{% if section.settings.collection_two != blank %}
+			<a href="{{ section.settings.collection_two.url }}" class="collection">
+				<img class="collection-img" src="{{ section.settings.collection_two.featured_image | image_url: width: 500 }}"/>
+				<h3>{{ section.settings.collection_two.title }}</h3>
+			</a>
+		{% endif %}
+	</div>
+</section>
+<style>
+section.custom-collection-section > div {
+	display: flex;
+}
+	section.custom-collection-section .collection {
+		width: 50%;
+		text-decoration: none;
+		color: inherit;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 85vh;
+		transition: 0.2s all;
+		position: relative;
+		overflow: hidden;
+		&:hover::before {
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+	}
+	section.custom-collection-section .collection::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		transition: ease-in-out 0.2s all;
+	}
+	.collection:hover
+	.collection-img {
+		transform: scale(1.1);
+	}
+	section.custom-collection-section .collection h3 {
+		color: white;
+		text-align: center;
+		padding: 10px;
+		z-index: 2;
+		position: absolute;
+		left: 10px;
+		bottom: 30px;
+		font-weight: 400;
+		font-size: 25px;
+	}
+	section.custom-collection-section .collection-img {
+		width: 100%;
+		position: absolute;
+		transition: ease-in-out 0.2s all;
+	}
+</style>
+
+{% schema %}
+{
+"name": "Collection Section",
+"tag": "section",
+"class": "custom-collection-section",
+"settings": [
+{
+"type": "collection",
+"id": "collection_one",
+"label": "First Collection"
+},
+{
+"type": "collection",
+"id": "collection_two",
+"label": "Second Collection"
+}
+],
+"presets": [
+{
+"name": "Collection Section",
+"category": "Custom Content"
+}
+]
+}
+{% endschema %}
