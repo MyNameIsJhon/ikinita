@@ -1,0 +1,242 @@
+{% comment %}
+  Section : custom-products
+  Affiche une grille de produits issus d'une collection.
+  Les modes :
+    - "automatic" : Utilise l’objet global collection (page collection)
+    - "custom"    : Utilise une collection choisie via le picker
+    - "all"       : Utilise la collection nommée "all" (tous les produits)
+{% endcomment %}
+
+<section id="custom-products-{{ section.id }}" class="custom-products">
+
+  {% comment %}
+    Détermination de la collection à utiliser.
+    Selon la configuration, on récupère soit une collection personnalisée,
+    soit la collection "all", soit la collection globale (sur une page collection).
+  {% endcomment %}
+  {% if section.settings.collection_source == 'custom' and section.settings.custom_collection != blank %}
+    {% assign current_collection = collections[section.settings.custom_collection] %}
+  {% elsif section.settings.collection_source == 'all' %}
+    {% assign current_collection = collections['all'] %}
+  {% elsif collection %}
+    {% assign current_collection = collection %}
+  {% endif %}
+
+  <!-- Zone de débogage pour vérifier le handle de la collection -->
+  {% if current_collection %}
+    <p style="font-size: 0.8em; color: gray;">Collection utilisée : {{ current_collection.handle }}</p>
+  {% else %}
+    <p style="font-size: 0.8em; color: red;">Aucune collection définie ou trouvée</p>
+  {% endif %}
+
+  {% if current_collection %}
+    {% assign all_products = current_collection.products %}
+  {% else %}
+    {% assign all_products = null %}
+  {% endif %}
+
+  {% if all_products and all_products.size > 0 %}
+    {% assign product_limit = section.settings.products_count | default: 8 %}
+
+    <div class="custom-products__grid
+                columns-mobile-{{ section.settings.columns_mobile }}
+                columns-tablet-{{ section.settings.columns_tablet }}
+                columns-desktop-{{ section.settings.columns_desktop }}">
+      {% for product in all_products limit: product_limit %}
+        <article class="product-card" data-product-handle="{{ product.handle }}">
+          <div class="product-card__images">
+            {% assign first_image = product.images.first %}
+            {% assign second_image = product.images[1] %}
+
+            <!-- Affichage de la première image -->
+            {% if first_image %}
+              <img src="{{ first_image.src | img_url: '400x' }}"
+                   alt="{{ product.title | escape }}"
+                   class="product-card__image first-image"
+                   style="display: block;" />
+            {% endif %}
+
+            <!-- Affichage de la deuxième image (initialement cachée) -->
+            {% if second_image %}
+              <img src="{{ second_image.src | img_url: '400x' }}"
+                   alt="{{ product.title | escape }}"
+                   class="product-card__image second-image"
+                   style="display: none;" />
+            {% endif %}
+          </div>
+
+          <h3 class="product-card__title">
+            <a href="{{ product.url | within: current_collection }}">
+              {{ product.title }}
+            </a>
+          </h3>
+
+          {% comment %}
+            Gestion de l’affichage de la devise.
+          {% endcomment %}
+          {% if section.settings.currency_format == 'written' %}
+            {% assign currency_display = "EUR" %}
+          {% else %}
+            {% assign currency_display = "€" %}
+          {% endif %}
+          <p class="product-card__price">
+            {{ currency_display }}{{ product.price | divided_by: 100.0 }}
+          </p>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% comment %}
+      Gestion du mode de chargement :
+       - preload : Affiche un message ou une animation de chargement.
+       - pagination : Affiche un bouton "Voir plus" (la logique doit être implémentée en JS ou via l’API).
+       - none : Aucun ajout.
+    {% endcomment %}
+    {% case section.settings.loading_mode %}
+      {% when 'preload' %}
+        <p class="loading-mode-info">Chargement des produits…</p>
+      {% when 'pagination' %}
+        <button type="button" class="btn-load-more">Voir plus de produits</button>
+      {% else %}
+        <!-- Aucun mode additionnel -->
+    {% endcase %}
+
+  {% else %}
+    <p>Aucun produit trouvé ou aucune collection définie.</p>
+  {% endif %}
+
+</section>
+
+<!-- Styles de base et grille responsive -->
+<style>
+  .custom-products__grid {
+    display: grid;
+    gap: 1rem;
+  }
+  .columns-mobile-1 { grid-template-columns: repeat(1, 1fr); }
+  .columns-mobile-2 { grid-template-columns: repeat(2, 1fr); }
+  .columns-mobile-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 768px) {
+    .columns-tablet-2 { grid-template-columns: repeat(2, 1fr); }
+    .columns-tablet-3 { grid-template-columns: repeat(3, 1fr); }
+    .columns-tablet-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .columns-desktop-3 { grid-template-columns: repeat(3, 1fr); }
+    .columns-desktop-4 { grid-template-columns: repeat(4, 1fr); }
+    .columns-desktop-5 { grid-template-columns: repeat(5, 1fr); }
+  }
+</style>
+
+<!-- Script d'animation sur clic pour basculer l'image -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var productCards = document.querySelectorAll('#custom-products-{{ section.id }} .product-card');
+    productCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        var firstImg = card.querySelector('.first-image');
+        var secondImg = card.querySelector('.second-image');
+        if (firstImg && secondImg) {
+          firstImg.style.transition = 'opacity 0.3s ease';
+          secondImg.style.transition = 'opacity 0.3s ease';
+          firstImg.style.opacity = '0';
+          secondImg.style.display = 'block';
+          secondImg.style.opacity = '1';
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "products section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "loading_mode",
+      "label": "Mode de chargement",
+      "options": [
+        { "label": "Préchargement", "value": "preload" },
+        { "label": "Pagination", "value": "pagination" },
+        { "label": "Aucun", "value": "none" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Nombre de produits à afficher",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Nombre de colonnes sur mobile",
+      "options": [
+        { "value": "1", "label": "1 colonne" },
+        { "value": "2", "label": "2 colonnes" },
+        { "value": "3", "label": "3 colonnes" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "Nombre de colonnes sur tablette",
+      "options": [
+        { "value": "2", "label": "2 colonnes" },
+        { "value": "3", "label": "3 colonnes" },
+        { "value": "4", "label": "4 colonnes" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Nombre de colonnes sur desktop",
+      "options": [
+        { "value": "3", "label": "3 colonnes" },
+        { "value": "4", "label": "4 colonnes" },
+        { "value": "5", "label": "5 colonnes" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "radio",
+      "id": "currency_format",
+      "label": "Format de devise",
+      "options": [
+        { "label": "Symbole (ex: €)", "value": "symbol" },
+        { "label": "Écrit (ex: EUR)", "value": "written" }
+      ],
+      "default": "symbol"
+    },
+    {
+      "type": "radio",
+      "id": "collection_source",
+      "label": "Source de la collection",
+      "options": [
+        { "label": "Page collection (automatique)", "value": "automatic" },
+        { "label": "Collection personnalisée", "value": "custom" },
+        { "label": "Tous les produits", "value": "all" }
+      ],
+      "default": "automatic"
+    },
+    {
+	  "type": "collection",
+	  "id": "custom_collection",
+	  "label": "Sélectionner une collection (pour Collection personnalisée)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Produits Personnalisée",
+      "category": "Produits"
+    }
+  ]
+}
+{% endschema %}
