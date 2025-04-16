@@ -7,8 +7,8 @@
 			{%- if section.settings.heading_text != blank -%}
 				<h2>{{ section.settings.heading_text | escape }}</h2>
 			{%- endif -%}
-			{%- if section.settings.subheading_text != blank -%}
-				<p>{{ section.settings.subheading_text | escape }}</p>
+			{%- if section.settings.button_text != blank -%}
+			  <a href="{{ section.settings.button_link | default: '#' }}" class="hero-button">{{ section.settings.button_text | escape }}</a>
 			{%- endif -%}
 		</div>
 </section>
@@ -38,6 +38,9 @@ section.custom-hero {
 	  max-width: 1200px;
 	  width: 100%;
 	  padding: 0 20px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
   }
 
   section.custom-hero h2 {
@@ -46,12 +49,30 @@ section.custom-hero {
 	  line-height: 1.2;
   }
 
-  section.custom-hero p {
-	  font-size: 24px;
-	  opacity: 0.8;
+  .hero-button {
+	  display: flex;
+	  flex-direction: column;
 	  font-weight: 700;
-	  line-height: 1.4;
-	  margin: 0;
+	  transition: all 0.2s ease;
+	  font-size: 23px;
+	  margin-top: 15px;
+	  margin-bottom: 10px;
+	  position: relative;
+	  &:hover::after {
+		  width: 110%;
+	  }
+	  max-width: fit-content;
+	  align-items: center;
+  }
+
+  .hero-button::after {
+	  content: '';
+	  background-color: white;
+	  width: 80%;
+	  height: 2px;
+	  bottom: 0;
+	  left: 0;
+	  transition: all 0.2s;
   }
 
   @media screen and (max-width: 768px) {
@@ -63,8 +84,8 @@ section.custom-hero {
 		  font-size: 36px;
 	  }
 
-	  section.custom-hero p {
-		  font-size: 20px;
+	  section.custom-hero a {
+		  font-size: 30px;
 	  }
 
 	  .hero-content {
@@ -82,8 +103,8 @@ section.custom-hero {
 		  font-size: 28px;
 	  }
 
-	  section.custom-hero p {
-		  font-size: 18px;
+	  section.custom-hero a {
+		  font-size: 22px;
 	  }
 
 	  .hero-content {
@@ -136,9 +157,15 @@ section.custom-hero {
    },
    {
      "type": "text",
-     "id": "subheading_text",
-     "label": "Subheading",
+     "id": "button_text",
+     "label": "Button Text",
      "default": "Discover now"
+   },
+   {
+     "type": "text",
+     "id": "button_link",
+     "label": "Button Link",
+     "default": "https://google.com"
    }
   ],
   "presets": [

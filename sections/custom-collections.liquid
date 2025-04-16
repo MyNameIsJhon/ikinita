@@ -2,13 +2,21 @@
 	<div class="collections-container">
 		{% if section.settings.collection_one != blank %}
 			<a href="{{ section.settings.collection_one.url }}" class="collection">
-				<img class="collection-img" src="{{ section.settings.collection_one.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_one.title }}"/>
+				{% if section.settings.collection_one_image != blank %}
+					<img class="collection-img" src="{{ section.settings.collection_one_image | image_url: width: 800 }}" alt="{{ section.settings.collection_one.title }}"/>
+				{% else %}
+					<img class="collection-img" src="{{ section.settings.collection_one.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_one.title }}"/>
+				{% endif %}
 				<h3>{{ section.settings.collection_one.title }}</h3>
 			</a>
 		{% endif %}
 		{% if section.settings.collection_two != blank %}
 			<a href="{{ section.settings.collection_two.url }}" class="collection">
-				<img class="collection-img" src="{{ section.settings.collection_two.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_two.title }}"/>
+				{% if section.settings.collection_two_image != blank %}
+					<img class="collection-img" src="{{ section.settings.collection_two_image | image_url: width: 800 }}" alt="{{ section.settings.collection_two.title }}"/>
+				{% else %}
+					<img class="collection-img" src="{{ section.settings.collection_two.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_two.title }}"/>
+				{% endif %}
 				<h3>{{ section.settings.collection_two.title }}</h3>
 			</a>
 		{% endif %}
@@ -49,11 +57,7 @@
 	}
 	
 	.collection:hover::before {
-		background-color: rgba(0, 0, 0, 0.4);
-	}
-	
-	.collection:hover .collection-img {
-		transform: scale(1.1);
+		background-color: rgba(0, 0, 0, 0.3);
 	}
 	
 	.collection h3 {
@@ -131,9 +135,21 @@
 "label": "First Collection"
 },
 {
+"type": "image_picker",
+"id": "collection_one_image",
+"label": "First Collection Image",
+"info": "If left blank, collection's featured image will be used"
+},
+{
 "type": "collection",
 "id": "collection_two",
 "label": "Second Collection"
+},
+{
+"type": "image_picker",
+"id": "collection_two_image",
+"label": "Second Collection Image",
+"info": "If left blank, collection's featured image will be used"
 }
 ],
 "presets": [
