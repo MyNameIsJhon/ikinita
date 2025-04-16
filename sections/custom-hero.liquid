@@ -1,52 +1,110 @@
 {%- assign bg_image = section.settings.background_image -%}
-
 <section
-  id="custom-hero-{{ section.id }}"
-  class="custom-hero"
->
-  <div>
-    {%- if section.settings.heading_text != blank -%}
-      <h2>{{ section.settings.heading_text | escape }}</h2>
-    {%- endif -%}
-    {%- if section.settings.subheading_text != blank -%}
-      <p>{{ section.settings.subheading_text | escape }}</p>
-    {%- endif -%}
-  </div>
+		id="custom-hero-{{ section.id }}"
+		class="custom-hero"
+		>
+		<div class="hero-content">
+			{%- if section.settings.heading_text != blank -%}
+				<h2>{{ section.settings.heading_text | escape }}</h2>
+			{%- endif -%}
+			{%- if section.settings.subheading_text != blank -%}
+				<p>{{ section.settings.subheading_text | escape }}</p>
+			{%- endif -%}
+		</div>
 </section>
-
 <style>
-	section.custom-hero {
-		height: 85vh;
-		background-color: {{ section.settings.background_color | default: '#f0f0f0' }};
-		{%- if bg_image != blank -%}
-		  background-image: url('{{ bg_image | image_url: width: 2000, height: 1200, crop: 'center' }}');
-		  background-size: cover;
-		  background-position: center;
-		  background-repeat: no-repeat;
-		{%- endif -%}
-		color: {{ section.settings.text_color | default: '#000000' }};
-		min-height: 300px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		padding: 20px;
-	}
-	section.custom-hero h2 {
-		font-size: 42px;
-		margin-bottom: 10px;
-	}
-	section.custom-hero p {
-		font-size: 30px;
-		opacity: 0.8;
-		font-weight: 700;
-	}
-	section.custom-hero div {
-		position: relative;
-		top: 20%;
-	}
-</style>
+section.custom-hero {
+    height: 86dvh;
+	background-color: {{ section.settings.background_color | default: '#f0f0f0' }};
+	{%- if bg_image != blank -%}
+		background-image: url('{{ bg_image | image_url: width: 2000, height: 1200, crop: 'center' }}');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	{%- endif -%}
+	color: {{ section.settings.text_color | default: '#000000' }};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+	box-sizing: border-box;
+}
 
+  .hero-content {
+	  position: relative;
+	  top: 10%;
+	  max-width: 1200px;
+	  width: 100%;
+	  padding: 0 20px;
+  }
+
+  section.custom-hero h2 {
+	  font-size: 42px;
+	  margin-bottom: 20px;
+	  line-height: 1.2;
+  }
+
+  section.custom-hero p {
+	  font-size: 24px;
+	  opacity: 0.8;
+	  font-weight: 700;
+	  line-height: 1.4;
+	  margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+	  section.custom-hero {
+		  height: 90vh;
+	  }
+
+	  section.custom-hero h2 {
+		  font-size: 36px;
+		  margin-bottom: 15px;
+	  }
+
+	  section.custom-hero p {
+		  font-size: 20px;
+	  }
+
+	  .hero-content {
+		  top: 5%;
+	  }
+  }
+
+  @media screen and (max-width: 480px) {
+	  section.custom-hero {
+		  height: 90vh;
+		  padding: 15px;
+	  }
+
+	  section.custom-hero h2 {
+		  font-size: 28px;
+		  margin-bottom: 10px;
+	  }
+
+	  section.custom-hero p {
+		  font-size: 18px;
+	  }
+
+	  .hero-content {
+		  top: 0;
+		  padding: 0 10px;
+	  }
+  }
+
+  /* Landscape orientation on mobile */
+  @media screen and (max-width: 768px) and (orientation: landscape) {
+	  section.custom-hero {
+		  height: 100vh;
+	  }
+
+	  .hero-content {
+		  top: 0;
+	  }
+  }
+</style>
 {% schema %}
 {
   "name": "Hero Section",
