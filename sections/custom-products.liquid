@@ -14,24 +14,29 @@
                 columns-desktop-{{ section.settings.columns_desktop }}">
       {% assign product_limit = section.settings.products_count | default: 8 %}
       {% for product in current_collection.products limit: product_limit %}
-        <article class="product-card" data-product-handle="{{ product.handle }}">
-          <div class="product-card__images">
-            {% if product.images.first %}
-              <img src="{{ product.images.first.src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image first-image" />
+        {% if product.images.size > 1 %}
+          {% assign has_second = true %}
+        {% else %}
+          {% assign has_second = false %}
+        {% endif %}
+        <article class="product-card{% if has_second %} has-second-image{% endif %}" data-product-handle="{{ product.handle }}">
+          <a href="{{ product.url | within: current_collection }}" class="product-card__link">
+            <div class="product-card__images">
+              {% if product.images.first %}
+                <img src="{{ product.images.first.src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image first-image" />
+              {% endif %}
+              {% if has_second %}
+                <img src="{{ product.images[1].src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image second-image" />
+              {% endif %}
+            </div>
+            <h3 class="product-card__title">{{ product.title }}</h3>
+            {% if section.settings.currency_format == 'written' %}
+              {% assign currency_display = "EUR" %}
+            {% else %}
+              {% assign currency_display = "€" %}
             {% endif %}
-            {% if product.images.size > 1 %}
-              <img src="{{ product.images[1].src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image second-image" />
-            {% endif %}
-          </div>
-          <h3 class="product-card__title">
-            <a href="{{ product.url | within: current_collection }}">{{ product.title }}</a>
-          </h3>
-          {% if section.settings.currency_format == 'written' %}
-            {% assign currency_display = "EUR" %}
-          {% else %}
-            {% assign currency_display = "€" %}
-          {% endif %}
-          <p class="product-card__price">{{ currency_display }}{{ product.price | divided_by: 100.0 }}</p>
+            <p class="product-card__price">{{ currency_display }}{{ product.price | divided_by: 100.0 }}</p>
+          </a>
         </article>
       {% endfor %}
     </div>
@@ -48,6 +53,12 @@
 </section>
 
 <style>
+.custom-products {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 .custom-products__grid {
   display: grid;
   gap: 1rem;
@@ -65,14 +76,34 @@
   .columns-desktop-4 { grid-template-columns: repeat(4, 1fr); }
   .columns-desktop-5 { grid-template-columns: repeat(5, 1fr); }
 }
+
+.product-card__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .product-card__images {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  aspect-ratio: {% case section.settings.image_dimension %}
+    {% when 'square' %} 1/1
+    {% when 'vertical' %} 3/4
+    {% when 'horizontal' %} 4/3
+    {% when 'widescreen' %} 16/9
+    {% when 'tall' %} 9/16
+    {% else %} 1/1
+  {% endcase %};
 }
+
 .product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: opacity 0.3s ease;
   display: block;
-  width: 100%;
 }
 .product-card__image.second-image {
   position: absolute;
@@ -80,8 +111,18 @@
   left: 0;
   opacity: 0;
 }
-.product-card:hover .first-image { opacity: 0; }
-.product-card:hover .second-image { opacity: 1; }
+.product-card.has-second-image:hover .first-image { opacity: 0; }
+.product-card.has-second-image:hover .second-image { opacity: 1; }
+
+.custom-products .product-card__title,
+.custom-products .product-card__price {
+  text-align: {{ section.settings.text_alignment }};
+  margin: 0;
+  padding: 0;
+}
+.product-card__title {
+  margin-bottom: 0.25em;
+}
 </style>
 
 <script>
@@ -222,6 +263,30 @@ document.addEventListener("DOMContentLoaded", function() {
       "type": "collection",
       "id": "custom_collection",
       "label": "Sélectionner une collection (pour Collection personnalisée)"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alignement du titre et du prix",
+      "options": [
+        { "value": "left", "label": "Gauche" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right", "label": "Droite" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "image_dimension",
+      "label": "Dimensions des images",
+      "options": [
+        { "value": "square", "label": "Carré (1:1)" },
+        { "value": "vertical", "label": "Vertical (3:4)" },
+        { "value": "horizontal", "label": "Horizontal (4:3)" },
+        { "value": "widescreen", "label": "Widescreen (16:9)" },
+        { "value": "tall", "label": "Tall (9:16)" }
+      ],
+      "default": "square"
     }
   ],
   "presets": [
