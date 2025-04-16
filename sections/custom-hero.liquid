@@ -16,7 +16,7 @@
 
 <style>
 	section.custom-hero {
-		height: 86dvh;
+		height: 85vh;
 		background-color: {{ section.settings.background_color | default: '#f0f0f0' }};
 		{%- if bg_image != blank -%}
 		  background-image: url('{{ bg_image | image_url: width: 2000, height: 1200, crop: 'center' }}');
