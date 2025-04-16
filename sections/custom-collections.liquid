@@ -1,0 +1,146 @@
+<section class="custom-collection-section">
+	<div class="collections-container">
+		{% if section.settings.collection_one != blank %}
+			<a href="{{ section.settings.collection_one.url }}" class="collection">
+				<img class="collection-img" src="{{ section.settings.collection_one.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_one.title }}"/>
+				<h3>{{ section.settings.collection_one.title }}</h3>
+			</a>
+		{% endif %}
+		{% if section.settings.collection_two != blank %}
+			<a href="{{ section.settings.collection_two.url }}" class="collection">
+				<img class="collection-img" src="{{ section.settings.collection_two.featured_image | image_url: width: 800 }}" alt="{{ section.settings.collection_two.title }}"/>
+				<h3>{{ section.settings.collection_two.title }}</h3>
+			</a>
+		{% endif %}
+	</div>
+</section>
+<style>
+	.custom-collection-section {
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	.collections-container {
+		display: flex;
+		width: 100%;
+	}
+	
+	.collection {
+		width: 50%;
+		text-decoration: none;
+		color: inherit;
+		position: relative;
+		overflow: hidden;
+		height: 85vh;
+		min-height: 400px;
+		transition: 0.2s all;
+	}
+	
+	.collection::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		transition: ease-in-out 0.2s all;
+	}
+	
+	.collection:hover::before {
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	.collection:hover .collection-img {
+		transform: scale(1.1);
+	}
+	
+	.collection h3 {
+		color: white;
+		padding: 10px;
+		z-index: 2;
+		position: absolute;
+		left: 15px;
+		bottom: 30px;
+		font-weight: 400;
+		font-size: 25px;
+		margin: 0;
+	}
+	
+	.collection-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: ease-in-out 0.2s all;
+	}
+	
+	@media screen and (max-width: 768px) {
+		.collection {
+			height: 60vh;
+			min-height: 350px;
+		}
+		
+		.collection h3 {
+			font-size: 22px;
+			bottom: 20px;
+		}
+	}
+	
+	@media screen and (max-width: 600px) {
+		.collections-container {
+			flex-direction: column;
+		}
+		
+		.collection {
+			width: 100%;
+			height: 50vh;
+			min-height: 250px;
+		}
+		
+		.collection h3 {
+			font-size: 20px;
+			bottom: 15px;
+		}
+	}
+	
+	@media screen and (max-width: 400px) {
+		.collection {
+			height: 40vh;
+			min-height: 200px;
+		}
+		
+		.collection h3 {
+			font-size: 18px;
+			bottom: 10px;
+		}
+	}
+</style>
+{% schema %}
+{
+"name": "Collection Section",
+"tag": "section",
+"class": "custom-collection-section",
+"settings": [
+{
+"type": "collection",
+"id": "collection_one",
+"label": "First Collection"
+},
+{
+"type": "collection",
+"id": "collection_two",
+"label": "Second Collection"
+}
+],
+"presets": [
+{
+"name": "Collection Section",
+"category": "Custom Content"
+}
+]
+}
+{% endschema %}
