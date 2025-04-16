@@ -1,0 +1,95 @@
+{%- assign bg_image = section.settings.background_image -%}
+
+<section
+  id="custom-hero-{{ section.id }}"
+  class="custom-hero"
+>
+  <div>
+    {%- if section.settings.heading_text != blank -%}
+      <h2>{{ section.settings.heading_text | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading_text != blank -%}
+      <p>{{ section.settings.subheading_text | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+	section.custom-hero {
+		height: 86dvh;
+		background-color: {{ section.settings.background_color | default: '#f0f0f0' }};
+		{%- if bg_image != blank -%}
+		  background-image: url('{{ bg_image | image_url: width: 2000, height: 1200, crop: 'center' }}');
+		  background-size: cover;
+		  background-position: center;
+		  background-repeat: no-repeat;
+		{%- endif -%}
+		color: {{ section.settings.text_color | default: '#000000' }};
+		min-height: 300px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 20px;
+	}
+	section.custom-hero h2 {
+		font-size: 42px;
+		margin-bottom: 10px;
+	}
+	section.custom-hero p {
+		font-size: 30px;
+		opacity: 0.8;
+		font-weight: 700;
+	}
+	section.custom-hero div {
+		position: relative;
+		top: 20%;
+	}
+</style>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "tag": "section",
+  "class": "custom-hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Choose an image for the hero background."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f0f0f0",
+      "info": "Fallback color if no image is selected, or while image loads."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+     "type": "text",
+     "id": "heading_text",
+     "label": "Heading",
+     "default": "Our new summer collection"
+   },
+   {
+     "type": "text",
+     "id": "subheading_text",
+     "label": "Subheading",
+     "default": "Discover now"
+   }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %}
