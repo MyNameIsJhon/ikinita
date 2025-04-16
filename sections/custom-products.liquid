@@ -1,19 +1,4 @@
-{% comment %}
-  Section : custom-products
-  Affiche une grille de produits issus d'une collection.
-  Les modes :
-    - "automatic" : Utilise l’objet global collection (page collection)
-    - "custom"    : Utilise une collection choisie via le picker
-    - "all"       : Utilise la collection nommée "all" (tous les produits)
-{% endcomment %}
-
 <section id="custom-products-{{ section.id }}" class="custom-products">
-
-  {% comment %}
-    Détermination de la collection à utiliser.
-    Selon la configuration, on récupère soit une collection personnalisée,
-    soit la collection "all", soit la collection globale (sur une page collection).
-  {% endcomment %}
   {% if section.settings.collection_source == 'custom' and section.settings.custom_collection != blank %}
     {% assign current_collection = collections[section.settings.custom_collection] %}
   {% elsif section.settings.collection_source == 'all' %}
@@ -22,130 +7,137 @@
     {% assign current_collection = collection %}
   {% endif %}
 
-  <!-- Zone de débogage pour vérifier le handle de la collection -->
   {% if current_collection %}
-    <p style="font-size: 0.8em; color: gray;">Collection utilisée : {{ current_collection.handle }}</p>
-  {% else %}
-    <p style="font-size: 0.8em; color: red;">Aucune collection définie ou trouvée</p>
-  {% endif %}
-
-  {% if current_collection %}
-    {% assign all_products = current_collection.products %}
-  {% else %}
-    {% assign all_products = null %}
-  {% endif %}
-
-  {% if all_products and all_products.size > 0 %}
-    {% assign product_limit = section.settings.products_count | default: 8 %}
-
     <div class="custom-products__grid
                 columns-mobile-{{ section.settings.columns_mobile }}
                 columns-tablet-{{ section.settings.columns_tablet }}
                 columns-desktop-{{ section.settings.columns_desktop }}">
-      {% for product in all_products limit: product_limit %}
+      {% assign product_limit = section.settings.products_count | default: 8 %}
+      {% for product in current_collection.products limit: product_limit %}
         <article class="product-card" data-product-handle="{{ product.handle }}">
           <div class="product-card__images">
-            {% assign first_image = product.images.first %}
-            {% assign second_image = product.images[1] %}
-
-            <!-- Affichage de la première image -->
-            {% if first_image %}
-              <img src="{{ first_image.src | img_url: '400x' }}"
-                   alt="{{ product.title | escape }}"
-                   class="product-card__image first-image"
-                   style="display: block;" />
+            {% if product.images.first %}
+              <img src="{{ product.images.first.src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image first-image" />
             {% endif %}
-
-            <!-- Affichage de la deuxième image (initialement cachée) -->
-            {% if second_image %}
-              <img src="{{ second_image.src | img_url: '400x' }}"
-                   alt="{{ product.title | escape }}"
-                   class="product-card__image second-image"
-                   style="display: none;" />
+            {% if product.images.size > 1 %}
+              <img src="{{ product.images[1].src | img_url: '400x' }}" alt="{{ product.title | escape }}" class="product-card__image second-image" />
             {% endif %}
           </div>
-
           <h3 class="product-card__title">
-            <a href="{{ product.url | within: current_collection }}">
-              {{ product.title }}
-            </a>
+            <a href="{{ product.url | within: current_collection }}">{{ product.title }}</a>
           </h3>
-
-          {% comment %}
-            Gestion de l’affichage de la devise.
-          {% endcomment %}
           {% if section.settings.currency_format == 'written' %}
             {% assign currency_display = "EUR" %}
           {% else %}
             {% assign currency_display = "€" %}
           {% endif %}
-          <p class="product-card__price">
-            {{ currency_display }}{{ product.price | divided_by: 100.0 }}
-          </p>
+          <p class="product-card__price">{{ currency_display }}{{ product.price | divided_by: 100.0 }}</p>
         </article>
       {% endfor %}
     </div>
-
-    {% comment %}
-      Gestion du mode de chargement :
-       - preload : Affiche un message ou une animation de chargement.
-       - pagination : Affiche un bouton "Voir plus" (la logique doit être implémentée en JS ou via l’API).
-       - none : Aucun ajout.
-    {% endcomment %}
+    
     {% case section.settings.loading_mode %}
-      {% when 'preload' %}
-        <p class="loading-mode-info">Chargement des produits…</p>
       {% when 'pagination' %}
-        <button type="button" class="btn-load-more">Voir plus de produits</button>
-      {% else %}
-        <!-- Aucun mode additionnel -->
+        <button id="load-more-btn" class="btn-load-more" data-page="2" data-handle="{{ current_collection.handle }}">Voir plus de produits</button>
+      {% when 'preload' %}
+        <div id="preload-indicator">Chargement automatique...</div>
     {% endcase %}
-
   {% else %}
-    <p>Aucun produit trouvé ou aucune collection définie.</p>
+    <p>Aucun produit trouvé ou collection inexistante.</p>
   {% endif %}
-
 </section>
 
-<!-- Styles de base et grille responsive -->
 <style>
-  .custom-products__grid {
-    display: grid;
-    gap: 1rem;
-  }
-  .columns-mobile-1 { grid-template-columns: repeat(1, 1fr); }
-  .columns-mobile-2 { grid-template-columns: repeat(2, 1fr); }
-  .columns-mobile-3 { grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 768px) {
-    .columns-tablet-2 { grid-template-columns: repeat(2, 1fr); }
-    .columns-tablet-3 { grid-template-columns: repeat(3, 1fr); }
-    .columns-tablet-4 { grid-template-columns: repeat(4, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .columns-desktop-3 { grid-template-columns: repeat(3, 1fr); }
-    .columns-desktop-4 { grid-template-columns: repeat(4, 1fr); }
-    .columns-desktop-5 { grid-template-columns: repeat(5, 1fr); }
-  }
+.custom-products__grid {
+  display: grid;
+  gap: 1rem;
+}
+.columns-mobile-1 { grid-template-columns: repeat(1, 1fr); }
+.columns-mobile-2 { grid-template-columns: repeat(2, 1fr); }
+.columns-mobile-3 { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 768px) {
+  .columns-tablet-2 { grid-template-columns: repeat(2, 1fr); }
+  .columns-tablet-3 { grid-template-columns: repeat(3, 1fr); }
+  .columns-tablet-4 { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1024px) {
+  .columns-desktop-3 { grid-template-columns: repeat(3, 1fr); }
+  .columns-desktop-4 { grid-template-columns: repeat(4, 1fr); }
+  .columns-desktop-5 { grid-template-columns: repeat(5, 1fr); }
+}
+.product-card__images {
+  position: relative;
+  overflow: hidden;
+}
+.product-card__image {
+  transition: opacity 0.3s ease;
+  display: block;
+  width: 100%;
+}
+.product-card__image.second-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.product-card:hover .first-image { opacity: 0; }
+.product-card:hover .second-image { opacity: 1; }
 </style>
 
-<!-- Script d'animation sur clic pour basculer l'image -->
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var productCards = document.querySelectorAll('#custom-products-{{ section.id }} .product-card');
-    productCards.forEach(function(card) {
-      card.addEventListener('click', function() {
-        var firstImg = card.querySelector('.first-image');
-        var secondImg = card.querySelector('.second-image');
-        if (firstImg && secondImg) {
-          firstImg.style.transition = 'opacity 0.3s ease';
-          secondImg.style.transition = 'opacity 0.3s ease';
-          firstImg.style.opacity = '0';
-          secondImg.style.display = 'block';
-          secondImg.style.opacity = '1';
+document.addEventListener("DOMContentLoaded", function() {
+  var loadMoreBtn = document.getElementById("load-more-btn");
+  if(loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", function() {
+      var page = parseInt(loadMoreBtn.getAttribute("data-page"));
+      var handle = loadMoreBtn.getAttribute("data-handle");
+      loadMoreBtn.disabled = true;
+      loadMoreBtn.textContent = "Chargement…";
+      fetch('/collections/' + handle + '?view=ajax&page=' + page)
+      .then(function(response) { return response.text(); })
+      .then(function(html) {
+        if(html.trim().length) {
+          document.querySelector('.custom-products__grid').insertAdjacentHTML('beforeend', html);
+          loadMoreBtn.setAttribute("data-page", page + 1);
+          loadMoreBtn.disabled = false;
+          loadMoreBtn.textContent = "Voir plus de produits";
+        } else {
+          loadMoreBtn.textContent = "Plus de produits";
+          loadMoreBtn.disabled = true;
         }
+      })
+      .catch(function() {
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.textContent = "Voir plus de produits";
       });
     });
-  });
+  }
+  
+  var preloadIndicator = document.getElementById("preload-indicator");
+  if(preloadIndicator) {
+    var loading = false;
+    var page = 2;
+    var handle = "{{ current_collection.handle }}";
+    var observer = new IntersectionObserver(function(entries) {
+      if(entries[0].isIntersecting && !loading) {
+        loading = true;
+        fetch('/collections/' + handle + '?view=ajax&page=' + page)
+        .then(function(response){ return response.text(); })
+        .then(function(html) {
+          if(html.trim().length){
+            document.querySelector('.custom-products__grid').insertAdjacentHTML('beforeend', html);
+            page++;
+            loading = false;
+          } else {
+            preloadIndicator.textContent = "Fin des produits";
+          }
+        })
+        .catch(function(){ loading = false; });
+      }
+    }, { threshold: 1.0 });
+    observer.observe(preloadIndicator);
+  }
+});
 </script>
 
 {% schema %}
@@ -227,9 +219,9 @@
       "default": "automatic"
     },
     {
-	  "type": "collection",
-	  "id": "custom_collection",
-	  "label": "Sélectionner une collection (pour Collection personnalisée)"
+      "type": "collection",
+      "id": "custom_collection",
+      "label": "Sélectionner une collection (pour Collection personnalisée)"
     }
   ],
   "presets": [
